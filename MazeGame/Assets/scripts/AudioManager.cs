@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip chaseClip;
 	
 	private AudioSource asrc;
+	private GameObject aObj;
+	private AudioSource footstep;
 	private State curState;
 	
 	// Use this for initialization
@@ -23,6 +25,9 @@ public class AudioManager : MonoBehaviour {
 		asrc = GetComponent<AudioSource>() as AudioSource;
 		asrc.clip = normalClip;
 		asrc.Play ();
+		
+		aObj = GameObject.Find("AudioObject");
+		footstep = aObj.GetComponent<AudioSource>();
 		
 	}
 	
@@ -34,6 +39,10 @@ public class AudioManager : MonoBehaviour {
 			} else {
 				PlayNormal ();
 			}
+		}
+		
+		if ( Input.GetButtonDown ("Fire1") ) {
+			footstep.Play ();
 		}
 	}
 	
