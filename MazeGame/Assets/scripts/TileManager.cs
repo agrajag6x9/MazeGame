@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System;
 
 public class TileManager : MonoBehaviour {
+	
+	// the box collider for the tile
 	public BoxCollider bc;
 
-	public GameObject TilePrefab;
+	// the object on which tiles are based
+	public GameObject TilePrefab;  
 	
 	public int Rows = 4;
 	public int Cols = 4;
@@ -14,14 +17,18 @@ public class TileManager : MonoBehaviour {
 	float screenHalfHeight;
 	float screenHalfWidth;
 	
+	// 2D array of tiles
 	private GameObject[,] tiles;
 	public GameObject[,] Tiles { get { return tiles; } }
 	
+	// the size of the tile
 	private float tileSize;
 	public float TileSize { get { return tileSize; } }
 	
+	// the number of tiles in the map
 	private int TileCount;
 
+	// the map of the tiles and the data on which it is based
 	public int[,] map;
 	private TextAsset mapData;
 	
@@ -54,6 +61,9 @@ public class TileManager : MonoBehaviour {
 	
 	}
 
+	/*
+	 * Creates a 2D array of blank tiles
+	 */
 	public void BuildTiles()
 	{
 		float startX = -screenHalfWidth;
@@ -77,6 +87,9 @@ public class TileManager : MonoBehaviour {
 	}
 
 
+	/*
+	 * Set the values of the tile array based on the data in map data file
+	 */
 	public void InitializeMap ()
 	{
 		map = new int[Cols, Rows];
