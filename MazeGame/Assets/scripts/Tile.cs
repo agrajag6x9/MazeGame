@@ -5,7 +5,7 @@ using System;
 
 public enum TileType
 {
-	Blank, Wall
+	Blank, Wall, SpawnPlayer
 };
 
 public class Tile : MonoBehaviour {
@@ -49,4 +49,11 @@ public class Tile : MonoBehaviour {
 	{
 		print ("column " + column + ", row " + row + ", " + CurrentTile);
 	}
+	
+	/*
+	 * Spawns the player when called
+	 */
+	 public void SpawnPlayer () {
+	 	GameObject player = Instantiate (Resources.Load<GameObject> ("character"), transform.position, Quaternion.identity) as GameObject;
+	 }
 }

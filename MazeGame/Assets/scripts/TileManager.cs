@@ -111,6 +111,11 @@ public class TileManager : MonoBehaviour {
 		for (int y = 0; y < Rows; y++) {
 			for (int x = 0; x < Cols; x++){
 				tiles [x, y].GetComponent<Tile> ().CurrentTile = (TileType)map [x, y];
+				
+				/* spawn the player */
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
+					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
+				}
 			}
 		}
 	}
