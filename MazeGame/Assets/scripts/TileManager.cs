@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System;
 
 public class TileManager : MonoBehaviour {
-	
-	// the box collider for the tile
-	public BoxCollider bc;
 
 	// the object on which tiles are based
 	public GameObject TilePrefab;  
@@ -115,6 +112,11 @@ public class TileManager : MonoBehaviour {
 				/* spawn the player */
 				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
 					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
+				}
+				/*makes wall tiles have colliders*/
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Wall) {
+					tiles [x, y].gameObject.AddComponent("BoxCollider");
+					tiles [x, y].transform.collider.isTrigger = true;
 				}
 			}
 		}
