@@ -10,7 +10,7 @@ public class characterWalk : MonoBehaviour {
 	
 	private Direction playerFacing = Direction.Left;
 	
-	public float speed = 12;
+	public float speed = 6;
 	// Use this for initialization
 	void Start () {
 	
@@ -52,6 +52,7 @@ public class characterWalk : MonoBehaviour {
 		}
 		
 	}
+
 	void Flip()
 	{
 		Vector3 theScale = transform.localScale;
