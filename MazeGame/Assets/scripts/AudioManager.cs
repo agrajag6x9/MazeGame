@@ -33,6 +33,8 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
+		// switch the audio file when space is pressed
 		if ( Input.GetButtonDown ("Jump") ) {
 			if (asrc.clip == normalClip) {
 				PlayChase ();
@@ -41,9 +43,9 @@ public class AudioManager : MonoBehaviour {
 			}
 		}
 		
-		if ( Input.GetButtonDown ("Fire1") ) {
-			footstep.Play ();
-		}
+		//if ( Input.GetButtonDown ("Fire1") ) {
+		//	footstep.Play ();
+		//}
 	}
 	
 	
