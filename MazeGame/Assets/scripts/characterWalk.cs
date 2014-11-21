@@ -53,10 +53,6 @@ public class characterWalk : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter (Collider col) {
-		print("hello world");
-	}
-	
 	void Flip()
 	{
 		Vector3 theScale = transform.localScale;
