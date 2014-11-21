@@ -113,10 +113,10 @@ public class TileManager : MonoBehaviour {
 				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
 					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
 				}
-				/*makes wall tiles have colliders*/
-				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Wall) {
-					tiles [x, y].gameObject.AddComponent("BoxCollider");
-					tiles [x, y].transform.collider.isTrigger = true;
+				/*removes colliders from blank tiles*/
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Blank || tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
+					Destroy(tiles[x,y].gameObject.collider2D);
+					//tiles [x, y].transform.collider.isTrigger = true;
 				}
 			}
 		}

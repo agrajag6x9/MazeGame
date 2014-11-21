@@ -25,10 +25,11 @@ public class AudioManager : MonoBehaviour {
 		asrc = GetComponent<AudioSource>() as AudioSource;
 		asrc.clip = normalClip;
 		asrc.Play ();
-		
+
+
 		aObj = GameObject.Find("AudioObject");
-		footstep = aObj.GetComponent<AudioSource>();
 		
+		//footstep = aObj.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
