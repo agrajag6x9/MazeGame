@@ -9,8 +9,7 @@ public enum TileType
 };
 
 public class Tile : MonoBehaviour {
-	public BoxCollider bc;
-
+	public GameObject Target;
 	TileManager tm;
 	/*
 	 * the sprites for each tile
@@ -65,4 +64,10 @@ public class Tile : MonoBehaviour {
 		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
 	 	GameObject player = Instantiate (Resources.Load<GameObject> ("character"),spawnPos, Quaternion.identity) as GameObject;
 	 }
+
+	void OnCillisionEnter2D(Collision2D other){
+			if (other.gameObject == Target) {
+
+				}
+		}
 }
