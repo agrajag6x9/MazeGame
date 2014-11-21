@@ -8,8 +8,8 @@ public class TileManager : MonoBehaviour {
 	// the object on which tiles are based
 	public GameObject TilePrefab;  
 	
-	public int Rows = 4;
-	public int Cols = 4;
+	public int Rows = 6;
+	public int Cols = 6;
 	
 	float screenHalfHeight;
 	float screenHalfWidth;
