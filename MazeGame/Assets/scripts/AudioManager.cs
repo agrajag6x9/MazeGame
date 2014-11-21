@@ -26,9 +26,7 @@ public class AudioManager : MonoBehaviour {
 		asrc.clip = normalClip;
 		asrc.Play ();
 
-
 		aObj = GameObject.Find("AudioObject");
-		
 		//footstep = aObj.GetComponent<AudioSource>();
 	}
 	
