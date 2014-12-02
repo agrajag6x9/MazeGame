@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RandomMaze;
 
 public class Maze {
 
@@ -35,6 +36,63 @@ public class Maze {
 			
 			// add the row to the main tiles list
 			tile.Add (tileRow);
+		}
+	}
+	
+	/// <summary>
+	/// Randomly create a maze
+	/// </summary>
+	/// <param name="rows">the number of rows in the maze</param>
+	/// <param name="cols">the number of columns in the maze.</param>
+	public Maze (int rows, int cols) {
+	
+		// create a random maze
+		// each cell has an empty space and a wall associated with it
+		// so in practice we only need half the number of tiles
+		int bCols = (cols/2);
+		int bRows = (rows/2);
+		BacktrackingMaze b = new BacktrackingMaze(bCols, bRows);
+		b.Generate ();
+		
+		for (int y = 0; y < b.sizeY; y++) {
+		
+			// generate the top row (main tile and East wall tile)
+			List<int> topRow = new List<int>();
+			for (int x = 0; x < b.sizeX; x++) {
+				topRow.Add ((int)TileType.Blank);
+				
+				if (b.cells[x, y].borders.Contains(Walls.E)) {
+					topRow.Add ((int)TileType.Wall);
+				}
+				else {
+					topRow.Add ((int)TileType.Blank);
+				}
+				
+			}
+			tile.Add (topRow);
+			
+			// generate the bottom row (Southern wall tile)
+			List<int> bottomRow = new List<int>();
+			for (int x = 0; x < b.sizeX; x++) {
+				
+				if (b.cells[x, y].borders.Contains(Walls.S)) {
+					bottomRow.Add ((int)TileType.Wall);
+				}
+				else {
+					bottomRow.Add ((int)TileType.Blank);
+				}
+				bottomRow.Add ((int)TileType.Wall);
+				
+			}
+			tile.Add (bottomRow);
+			
+		}
+		
+		// add the player to a random tile
+		bool spawnFound = false;
+		while (!spawnFound) {
+			tile[0][0] = (int)TileType.SpawnPlayer;
+			spawnFound = true;
 		}
 	}
 }
