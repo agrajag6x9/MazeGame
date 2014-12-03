@@ -171,24 +171,26 @@ namespace RandomMaze
 		/// <summary>
 		/// Print the maze in a human readable format
 		/// </summary>
-		public void Print() {
+		public string Print() {
+			string s = "";
 			for (int y = 0; y < sizeY; y++) {
 				for (int x = 0; x < sizeX; x++) {
 
 					if (cells [x, y].borders.Contains (Walls.S)) {
-						Console.Write ("_");
+						s += "_";
 					} else {
-						Console.Write (" ");
+						s += " ";
 					}
 
 					if (cells [x, y].borders.Contains (Walls.E)) {
-						Console.Write ("|");
+						s += "|";
 					} else {
-						Console.Write (" ");
+						s += " ";
 					}
 				}
-				Console.WriteLine ();
+				s += "\n";
 			}
+			return s;
 		}
 			
 	}

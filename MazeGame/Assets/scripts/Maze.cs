@@ -49,10 +49,11 @@ public class Maze {
 		// create a random maze
 		// each cell has an empty space and a wall associated with it
 		// so in practice we only need half the number of tiles
-		int bCols = (cols/2);
-		int bRows = (rows/2);
+		int bCols = ((cols+1)/2);
+		int bRows = ((rows+1)/2);
 		BacktrackingMaze b = new BacktrackingMaze(bCols, bRows);
 		b.Generate ();
+		Debug.Log (b.Print());
 		
 		for (int y = 0; y < b.sizeY; y++) {
 		
