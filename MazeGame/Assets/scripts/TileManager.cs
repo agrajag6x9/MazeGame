@@ -89,10 +89,12 @@ public class TileManager : MonoBehaviour {
 	 */
 	public void InitializeMap ()
 	{
+		/*
 		map = new int[Cols, Rows];
 
 		string[] lines = mapData.text.Split ('\n');
 
+		
 		for (int y = 0; y < Rows; y++) {
 
 			string[] line = (lines [y].Split (','));
@@ -104,10 +106,13 @@ public class TileManager : MonoBehaviour {
 					map[x, y] = num;
 				}
 			}
+		*/
+		//Maze startMaze = new Maze(mapData);
+		Maze startMaze = new Maze(Rows, Cols);
 
 		for (int y = 0; y < Rows; y++) {
 			for (int x = 0; x < Cols; x++){
-				tiles [x, y].GetComponent<Tile> ().CurrentTile = (TileType)map [x, y];
+				tiles [x, y].GetComponent<Tile> ().CurrentTile = (TileType)startMaze.GetTile (x, y);
 				
 				/* spawn the player */
 				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
