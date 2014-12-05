@@ -17,44 +17,12 @@ public class characterWalk : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
-		// left
-		if(Input.GetKey (KeyCode.LeftArrow))
-		{
-			transform.position += Vector3.left * speed * Time.deltaTime;
-			if (playerFacing == Direction.Right) {
-				Flip ();
-				playerFacing = Direction.Left;
-			}
-		}
-		
-		// right
-		if(Input.GetKey (KeyCode.RightArrow))
-		{
-			transform.position += Vector3.right * speed * Time.deltaTime;
-			if (playerFacing == Direction.Left) {
-				Flip ();
-				playerFacing = Direction.Right;
-			}
-		}
-		
-		// up
-		if(Input.GetKey (KeyCode.UpArrow))
-		{
-			transform.position += Vector3.up * speed * Time.deltaTime;
-		}
-		
-		// down
-		if(Input.GetKey (KeyCode.DownArrow))
-		{
-			transform.position += Vector3.down * speed * Time.deltaTime;
-		}
-		
-	}
+		float moveX = Input.GetAxis ("Horizontal");
+		float moveY = Input.GetAxis ("Vertical");
+		rigidbody2D.velocity = new Vector2 (moveX * speed, moveY * speed);
 
-	void OnTriggerEnter (Collider col) {
-		print("hello world");
 	}
 	
 	void Flip()
