@@ -46,7 +46,7 @@ public class TileManager : MonoBehaviour {
 
 		tileSize = TilePrefab.renderer.bounds.extents.x * 2;
 
-		mapData = (TextAsset)Resources.Load ("map");
+		mapData = (TextAsset)Resources.Load ("Start");
 		print (mapData.text);
 
 		BuildTiles ();
@@ -108,7 +108,7 @@ public class TileManager : MonoBehaviour {
 			}
 		*/
 		//Maze startMaze = new Maze(mapData);
-		Maze startMaze = new Maze(Rows, Cols);
+		Maze startMaze = new Maze(mapData);
 
 		for (int y = 0; y < Rows; y++) {
 			for (int x = 0; x < Cols; x++){

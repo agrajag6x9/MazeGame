@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 100000, guid: c98cc001e44550f4083bb23622946ff7, type: 2}
-  Rows: 0
+  Rows: 10
   Cols: 15
 --- !u!114 &1165338218
 MonoBehaviour:
