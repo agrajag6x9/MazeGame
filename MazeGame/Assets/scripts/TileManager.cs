@@ -11,6 +11,8 @@ public class TileManager : MonoBehaviour {
 	public int Rows = 6;
 	public int Cols = 6;
 	
+	public bool loadLevel;
+	
 	float screenHalfHeight;
 	float screenHalfWidth;
 	
@@ -41,16 +43,32 @@ public class TileManager : MonoBehaviour {
 	
 
 	void Start () {
+		/*
 		screenHalfHeight = Camera.main.orthographicSize;
 		screenHalfWidth = (float)Mathf.Round (screenHalfHeight * Camera.main.aspect);
+		*/
 
 		tileSize = TilePrefab.renderer.bounds.extents.x * 2;
 
 		mapData = (TextAsset)Resources.Load ("Start");
-		print (mapData.text);
+		
+		// create new maze
+		Maze startMaze;
+		if ( loadLevel ) {
+			startMaze = new Maze(mapData);
+			Rows = startMaze.Rows;
+			Cols = startMaze.Cols;
+		} else {
+			startMaze = new Maze(Rows, Cols);
+		}
+		
+		screenHalfHeight = tileSize * Rows/2;
+		screenHalfWidth = tileSize * Cols/2;
+		
 
-		BuildTiles ();
-		InitializeMap ();
+		//BuildTiles ();
+		//InitializeMap ();
+		MakeMap (startMaze);
 	}
 	
 	// Update is called once per frame
@@ -107,8 +125,10 @@ public class TileManager : MonoBehaviour {
 				}
 			}
 		*/
+		Maze startMaze = new Maze(Rows, Cols);
 		//Maze startMaze = new Maze(mapData);
-		Maze startMaze = new Maze(mapData);
+		Rows = startMaze.Rows;
+		Cols = startMaze.Cols;
 
 		for (int y = 0; y < Rows; y++) {
 			for (int x = 0; x < Cols; x++){
@@ -125,5 +145,39 @@ public class TileManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	public void MakeMap( Maze maze ) {
+	
+		float startX = -screenHalfWidth;
+		float startY = screenHalfHeight;
+		
+		tiles = new GameObject[Cols, Rows];
+		
+		for (int y = 0; y < Rows; y++) 
+		{
+			for (int x = 0; x < Cols; x++)
+			{
+				// initialize the Tile Object
+				Vector3 position = new Vector3 (startX + x * tileSize, startY - y * tileSize, 0);
+				GameObject t = Instantiate (TilePrefab, position, Quaternion.identity) as GameObject;
+				t.GetComponent<Tile> ().SetColumnRow (x, y);
+				tiles [x, y] = t;
+				
+				// set up the Tile
+				tiles [x, y].GetComponent<Tile> ().CurrentTile = (TileType)maze.GetTile (x, y);
+				
+				/* spawn the player */
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
+					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
+				}
+				/*removes colliders from blank tiles*/
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Blank || tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
+					Destroy(tiles[x,y].gameObject.collider2D);
+					//tiles [x, y].transform.collider.isTrigger = true;
+				}
+			}
+		}
+		
 	}
 }

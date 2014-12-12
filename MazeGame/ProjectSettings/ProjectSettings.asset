@@ -53,7 +53,6 @@ PlayerSettings:
   xboxEnableKinect: 0
   xboxEnableKinectAutoTracking: 0
   xboxEnableFitness: 0
-  visibleInBackground: 0
   macFullscreenMode: 2
   d3d9FullscreenMode: 1
   xboxSpeechDB: 0
@@ -150,7 +149,10 @@ PlayerSettings:
   psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: 
+    2: 
+    4: 
   metroPackageName: MazeGame
   metroPackageLogo: 
   metroPackageLogo140: 

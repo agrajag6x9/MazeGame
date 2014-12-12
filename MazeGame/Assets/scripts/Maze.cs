@@ -6,6 +6,8 @@ using RandomMaze;
 public class Maze {
 
 	private List<List<int>> tile = new List<List<int>>();
+	public int Rows { get; set; }
+	public int Cols { get; set; }
 	
 	/// <summary>
 	/// Gets a tile at the specified coordinates
@@ -37,6 +39,10 @@ public class Maze {
 			// add the row to the main tiles list
 			tile.Add (tileRow);
 		}
+		
+		// set the rows and columns
+		Rows = tile.Count;
+		Cols = tile[0].Count;
 	}
 	
 	/// <summary>
@@ -95,5 +101,9 @@ public class Maze {
 			tile[0][0] = (int)TileType.SpawnPlayer;
 			spawnFound = true;
 		}
+		
+		// set the rows and columns		
+		Rows = tile.Count;
+		Cols = tile[0].Count;
 	}
 }
