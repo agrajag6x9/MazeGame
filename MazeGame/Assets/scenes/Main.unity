@@ -109,6 +109,8 @@ MonoBehaviour:
   Rows: 10
   Cols: 18
   loadLevel: 0
+  screenHalfHeight: 0
+  screenHalfWidth: 0
 --- !u!114 &1165338218
 MonoBehaviour:
   m_ObjectHideFlags: 0

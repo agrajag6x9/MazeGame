@@ -13,8 +13,8 @@ public class TileManager : MonoBehaviour {
 	
 	public bool loadLevel;
 	
-	float screenHalfHeight;
-	float screenHalfWidth;
+	public float screenHalfHeight;
+	public float screenHalfWidth;
 	
 	// 2D array of tiles
 	private GameObject[,] tiles;
@@ -154,8 +154,20 @@ public class TileManager : MonoBehaviour {
 		
 		tiles = new GameObject[Cols, Rows];
 		
+		// make a wall on top of the stage
+		for (int x = -1; x < Cols + 1; x++) {
+			Vector3 topWallPos = new Vector3 (startX + x * tileSize, startY + 1 * tileSize, 0);
+			GameObject topWall = Instantiate (TilePrefab, topWallPos, Quaternion.identity) as GameObject;
+			topWall.GetComponent<Tile>().CurrentTile = TileType.Wall;
+		}
+		
 		for (int y = 0; y < Rows; y++) 
 		{
+			// make a wall to the left of the stage
+			Vector3 leftWallPos = new Vector3 (startX - 1 * tileSize, startY - y * tileSize, 0);
+			GameObject leftWall = Instantiate (TilePrefab, leftWallPos, Quaternion.identity) as GameObject;
+			leftWall.GetComponent<Tile>().CurrentTile = TileType.Wall;
+			
 			for (int x = 0; x < Cols; x++)
 			{
 				// initialize the Tile Object
@@ -177,6 +189,19 @@ public class TileManager : MonoBehaviour {
 					//tiles [x, y].transform.collider.isTrigger = true;
 				}
 			}
+			
+			// make a wall to the right of the stage
+			Vector3 rightWallPos = new Vector3 (startX + Cols * tileSize, startY - y * tileSize, 0);
+			GameObject rightWall = Instantiate (TilePrefab, rightWallPos, Quaternion.identity) as GameObject;
+			rightWall.GetComponent<Tile>().CurrentTile = TileType.Wall;
+			
+		}
+		
+		// make a wall on the bottom of the stage
+		for (int x = -1; x < Cols + 1; x++) {
+			Vector3 topWallPos = new Vector3 (startX + x * tileSize, startY - Rows * tileSize, 0);
+			GameObject topWall = Instantiate (TilePrefab, topWallPos, Quaternion.identity) as GameObject;
+			topWall.GetComponent<Tile>().CurrentTile = TileType.Wall;
 		}
 		
 	}
