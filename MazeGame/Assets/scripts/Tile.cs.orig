@@ -1,0 +1,99 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+
+public enum TileType
+{
+<<<<<<< HEAD
+	Blank, 
+	Wall, 
+	SpawnPlayer,
+	RandomLevel,
+	SpawnMonster
+=======
+	Blank, Wall, SpawnPlayer, SpawnMonster
+>>>>>>> origin
+};
+
+public class Tile : MonoBehaviour {
+
+	//reference to monster
+	public GameObject m;
+
+	TileManager tm;
+	/*
+	 * the sprites for each tile
+	 */
+	public List<Sprite> TileSprites;
+		
+	private int column, row;
+	
+	/*
+	 * the type of this particular tile.  Initialized to blank
+	 */
+	private TileType currentTile = TileType.Blank;
+	public TileType CurrentTile {
+		get{ return currentTile;}
+		set{
+			currentTile = (TileType)value;
+
+			GetComponent<SpriteRenderer> ().sprite = TileSprites [(int)currentTile];
+		}
+	}
+
+	/*
+	 * defines where the tile is on the map
+	 * Params:
+	 * 		c (int): the column number
+	 *		r (int): the row number
+	 */
+	public void SetColumnRow (int c, int r)
+	{
+		column = c;
+		row = r;
+	}
+
+	/*
+	 * prints the tile's location when clicked
+	 */
+	void OnMouseUp ()
+	{
+		print ("column " + column + ", row " + row + ", " + CurrentTile);
+	}
+	
+	/*
+	 * Spawns the player when called
+	 */
+	 public void SpawnPlayer () 
+	 {
+		//Reference to TileManager
+		GameObject mainGO = GameObject.Find ("MainGO");
+		tm = mainGO.GetComponent<TileManager> ();
+
+		//Offsets spawn location to be the center of a tile
+		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
+	 	GameObject player = Instantiate (Resources.Load<GameObject> ("character"),spawnPos, Quaternion.identity) as GameObject;
+	 }
+<<<<<<< HEAD
+	 
+	 void OnTriggerEnter2D() {
+		print ("column " + column + ", row " + row + ", " + CurrentTile);
+		NextLevel();
+	 }
+	 
+	 public void NextLevel() {
+	 	if (CurrentTile == TileType.RandomLevel) {
+	 		Application.LoadLevel ("RandomLevel");
+	 	}
+	 }
+=======
+
+	 public void SpawnMonster()
+	{
+		//Offsets spawn location to be the center of a tile
+		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
+		GameObject monster = Instantiate (m,spawnPos, Quaternion.identity) as GameObject;
+	}
+>>>>>>> origin
+}

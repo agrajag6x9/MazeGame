@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -7,13 +7,15 @@ public enum TileType
 {
 	Blank, 
 	Wall, 
-	SpawnPlayer,
-	RandomLevel,
+	SpawnPlayer, 
+	RandomLevel, 
 	SpawnMonster
 };
 
 public class Tile : MonoBehaviour {
-	public BoxCollider bc;
+
+	//reference to monster
+	public GameObject monster;
 
 	TileManager tm;
 	/*
@@ -60,7 +62,7 @@ public class Tile : MonoBehaviour {
 	 * Spawns the player when called
 	 */
 	 public void SpawnPlayer () 
-	{
+	 {
 		//Reference to TileManager
 		GameObject mainGO = GameObject.Find ("MainGO");
 		tm = mainGO.GetComponent<TileManager> ();
@@ -69,7 +71,20 @@ public class Tile : MonoBehaviour {
 		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
 	 	GameObject player = Instantiate (Resources.Load<GameObject> ("character"),spawnPos, Quaternion.identity) as GameObject;
 	 }
-	 
+
+	public void SpawnMonster()
+	{
+		Debug.Log (monster);
+		
+		//Reference to TileManager
+		GameObject mainGO = GameObject.Find ("MainGO");
+		tm = mainGO.GetComponent<TileManager> ();
+		
+		//Offsets spawn location to be the center of a tile
+		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
+		GameObject m = Instantiate (monster,spawnPos, Quaternion.identity) as GameObject;
+	}
+
 	 void OnTriggerEnter2D() {
 		print ("column " + column + ", row " + row + ", " + CurrentTile);
 		NextLevel();

@@ -183,10 +183,17 @@ public class TileManager : MonoBehaviour {
 				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
 					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
 				}
+				
+				/* spawn the enemies */
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnMonster) {
+					tiles [x, y].GetComponent<Tile> ().SpawnMonster();
+				}
+				
 				/*removes colliders from blank tiles*/
 				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Blank ||
 				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer ||
-				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.RandomLevel
+				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.RandomLevel ||
+				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnMonster
 				 ) {
 					//Destroy(tiles[x,y].gameObject.collider2D);
 					tiles[x,y].gameObject.collider2D.isTrigger = true;

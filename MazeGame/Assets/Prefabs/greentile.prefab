@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92b8c91f9738e4439ca41b85eab4a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 0}
+  monster: {fileID: 100000, guid: aedba03e62fd04caa9fb1755d310f3ee, type: 2}
   TileSprites:
   - {fileID: 21300000, guid: 85d37f4f419c1e04d86b498323e0ed7e, type: 3}
   - {fileID: 21300000, guid: fd2c23abdea60a248aeeaffa41e4ce9f, type: 3}
+  - {fileID: 21300000, guid: 85d37f4f419c1e04d86b498323e0ed7e, type: 3}
   - {fileID: 21300000, guid: 85d37f4f419c1e04d86b498323e0ed7e, type: 3}
   - {fileID: 21300000, guid: 85d37f4f419c1e04d86b498323e0ed7e, type: 3}
 --- !u!212 &21200000
