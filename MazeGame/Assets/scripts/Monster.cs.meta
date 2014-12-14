@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 01940efe51392314f89a5b9cf87a9437
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - TilePrefab: {fileID: 100000, guid: c98cc001e44550f4083bb23622946ff7, type: 2}
+  - monster: {fileID: 100000, guid: f6dfa1c0a6dadd24f8cc4562e109a37b, type: 2}
+  - character: {fileID: 100002, guid: ab533fa5c5684b342a94bc1b1b9994f8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
