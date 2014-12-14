@@ -5,7 +5,11 @@ using System;
 
 public enum TileType
 {
-	Blank, Wall, SpawnPlayer
+	Blank, 
+	Wall, 
+	SpawnPlayer,
+	RandomLevel,
+	SpawnMonster
 };
 
 public class Tile : MonoBehaviour {
@@ -64,5 +68,16 @@ public class Tile : MonoBehaviour {
 		//Offsets spawn location to be the center of a tile
 		Vector3 spawnPos = new Vector3 (transform.position.x + tm.TileSize / 2, transform.position.y - tm.TileSize / 2, 0); 
 	 	GameObject player = Instantiate (Resources.Load<GameObject> ("character"),spawnPos, Quaternion.identity) as GameObject;
+	 }
+	 
+	 void OnTriggerEnter2D() {
+		print ("column " + column + ", row " + row + ", " + CurrentTile);
+		NextLevel();
+	 }
+	 
+	 public void NextLevel() {
+	 	if (CurrentTile == TileType.RandomLevel) {
+	 		Application.LoadLevel ("RandomLevel");
+	 	}
 	 }
 }

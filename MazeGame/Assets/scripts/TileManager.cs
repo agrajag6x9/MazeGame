@@ -184,8 +184,12 @@ public class TileManager : MonoBehaviour {
 					tiles [x, y].GetComponent<Tile> ().SpawnPlayer();
 				}
 				/*removes colliders from blank tiles*/
-				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Blank || tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer) {
-					Destroy(tiles[x,y].gameObject.collider2D);
+				if (tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.Blank ||
+				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.SpawnPlayer ||
+				 tiles [x, y].GetComponent<Tile> ().CurrentTile == TileType.RandomLevel
+				 ) {
+					//Destroy(tiles[x,y].gameObject.collider2D);
+					tiles[x,y].gameObject.collider2D.isTrigger = true;
 					//tiles [x, y].transform.collider.isTrigger = true;
 				}
 			}

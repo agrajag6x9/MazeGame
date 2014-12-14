@@ -13,12 +13,16 @@ public class characterWalk : MonoBehaviour {
 	private float ScreenHalfWidth;
 	private float ScreenHalfHeight;
 	
+	private float distanceTraveled = 0f;
+	private AudioSource asrc;
+	
 	public float speed = 6;
+	public AudioClip footstep;
 	
 	// Use this for initialization
 	void Start () {
-		ScreenHalfWidth = TileManager.Instance.screenHalfWidth;
-		ScreenHalfHeight = TileManager.Instance.screenHalfHeight;
+		asrc = GetComponent<AudioSource>();
+		StartCoroutine(FootstepSound());
 	}
 	
 	// Update is called once per frame
@@ -27,12 +31,24 @@ public class characterWalk : MonoBehaviour {
 		float moveX = Input.GetAxis ("Horizontal");
 		float moveY = Input.GetAxis ("Vertical");
 		
-		if (transform.position.x < -ScreenHalfWidth) {
-			moveX *= -2;
-		}
+		Vector2 move = new Vector2 (moveX * speed, moveY * speed);
+		distanceTraveled += move.magnitude;
 		
-		rigidbody2D.velocity = new Vector2 (moveX * speed, moveY * speed);
+		rigidbody2D.velocity = move;
 
+	}
+	
+	private IEnumerator FootstepSound (){
+		bool playSound = true;
+		while (playSound) {
+		
+			//Debug.Log (distanceTraveled);
+			if (distanceTraveled > 100) {
+				asrc.Play();
+				distanceTraveled = 0;
+			}
+			yield return 0;
+		}
 	}
 	
 	void Flip()
